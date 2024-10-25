@@ -6,6 +6,7 @@ const api = {
   } 
   catch (error){
     alert('Erro')
+    throw error
   }
 }
 }
