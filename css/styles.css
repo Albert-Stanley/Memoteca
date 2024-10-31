@@ -159,9 +159,12 @@ h2, h3 {
 #pensamento-form input {
   margin-bottom: 24px;
   outline: none;
-  border-style: none;
+  border: 1px solid var(--Cinza-medio, #8F8F8F); /* Adicionei uma borda */
   font-size: 20px;
   font-family: "Poppins", sans-serif;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--Cinza-claro, #EDF0F4);
 }
 
 .form-botoes {
@@ -210,7 +213,7 @@ h2, h3 {
   row-gap: 32px;
 }
 
-.li-pensamento {
+.li-pensamentos {
   position: relative;
   padding: 16px;
   background: var(--Branco, #FFF);

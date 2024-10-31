@@ -12,13 +12,13 @@ const api = {
   async salvarPensamentos(pensamento) {
     try {
       const response = await fetch('http://localhost:3000/pensamentos', {
-        method: POST,
+        method: 'POST',
         headers: {
-          'Content-type': 'aplication/json'
+          'Content-type': 'application/json'
         },
         body: JSON.stringify(pensamento)
       })
-      return await response.json
+      return await response.json()
     }
     catch (error) {
       alert('Erro')

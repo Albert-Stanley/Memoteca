@@ -1,6 +1,11 @@
 import api from './api.js'
 
 const ui = {
+
+  limparFormulario() {
+    document.getElementById('pensamento-form').reset();
+  },
+
   async renderizarPensamentos() {
     const listaPensamentos = document.getElementById('lista-pensamentos')
     try {
@@ -15,7 +20,7 @@ const ui = {
     const listaPensamentos = document.getElementById("lista-pensamentos")
     const li = document.createElement("li")
     li.setAttribute("data-id", pensamento.id)
-    li.classList.add("lista-pensamentos")
+    li.classList.add("li-pensamentos")
 
     const iconeAspas = document.createElement("img")
     iconeAspas.src = "assets/imagens/aspas-azuis.png"
@@ -35,6 +40,7 @@ const ui = {
     li.appendChild(pensamentoAutoria)
     listaPensamentos.appendChild(li)
   }
+
 }
 
 export default ui
