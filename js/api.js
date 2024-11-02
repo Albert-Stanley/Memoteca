@@ -9,7 +9,7 @@ const api = {
       throw error
     }
   },
-  async salvarPensamentos(pensamento) {
+  async salvarPensamento(pensamento) {
     try {
       const response = await fetch('http://localhost:3000/pensamentos', {
         method: 'POST',
@@ -35,7 +35,7 @@ const api = {
       throw error
     }
   },
-  async editarPensamentos(pensamento) {
+  async editarPensamento(pensamento) {
     try {
       const response = await fetch(`http://localhost:3000/pensamentos/${id}`, {
         method: 'PUT',
