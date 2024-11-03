@@ -10,6 +10,14 @@ const ui = {
 
   },
 
+  async excluirPensamento(pensamentoId){
+    const pensamento = await api.exluirPensamento(pensamentoId)
+    document.getElementById("pensamento-id").value = pensamento.id
+    document.getElementById("pensamento-autoria").value = pensamento.autoria
+    document.getElementById("pensamento-conteudo").value = pensamento.conteudo
+
+  },
+
   limparFormulario() {
     document.getElementById('pensamento-form').reset();
   },
@@ -52,11 +60,19 @@ const ui = {
     iconeEditar.alt = "Icone editar"
     botaoEditar.appendChild(iconeEditar)
 
+    const botaoExcluir = document.createElement("button")
+    botaoExcluir.classList.add("botao-excluir")
+    botaoExcluir.onclick = () => ui.excluirPensamento(pensamento.id)
+
+    const iconeExcluir = document.createElement("img")
+    iconeExcluir.src = "assets/imagens/icone-excluir.png"
+    iconeExcluir.alt = "Icone Excluir"
+    botaoExcluir.appendChild(iconeExcluir)
+
     const icones = document.createElement("div")
     icones.classList.add("icones")
     icones.appendChild(botaoEditar)
-   
-
+    icones.appendChild(botaoExcluir)
 
     li.appendChild(iconeAspas)
     li.appendChild(pensamentoConteudo)
@@ -67,4 +83,4 @@ const ui = {
 
 }
 
-export default ui
+export default ui;
