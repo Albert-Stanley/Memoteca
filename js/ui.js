@@ -16,16 +16,24 @@ const ui = {
 
   async renderizarPensamentos() {
     const listaPensamentos = document.getElementById('lista-pensamentos')
+    const mensagemVazia = document.getElementById("mensagem-vazia");
     listaPensamentos.innerHTML = ""
 
     try {
       const pensamentos = await api.buscarPensamentos()
-      pensamentos.forEach(ui.adicionarPensamentoNaLista);
-    } catch (error) {
-      alert('Erro, não foi possível renderizar seus pensamentos');
-
+      pensamentos.forEach(ui.adicionarPensamentoNaLista)
+      if (pensamentos.length === 0) {
+        mensagemVazia.style.display = "block";
+      } else {
+        mensagemVazia.style.display = "none";
+        pensamentos.forEach(ui.adicionarPensamentoNaLista)
+      }
+    }
+    catch {
+      alert('Erro ao renderizar pensamentos')
     }
   },
+
   adicionarPensamentoNaLista(pensamento) {
     const listaPensamentos = document.getElementById("lista-pensamentos")
     const li = document.createElement("li")
@@ -58,13 +66,13 @@ const ui = {
     botaoExcluir.classList.add("botao-excluir")
     botaoExcluir.onclick = async () => {
       const confirmacao = confirm("Tem certeza que deseja excluir este pensamento?");
-      if(!confirmacao) return
-        try{
-          await api.exluirPensamento(pensamento.id);
-          ui.renderizarPensamentos()
-        }catch(error){
-          alert("Erro ao excluir pensamento")
-        }
+      if (!confirmacao) return
+      try {
+        await api.exluirPensamento(pensamento.id);
+        ui.renderizarPensamentos()
+      } catch (error) {
+        alert("Erro ao excluir pensamento")
+      }
     }
 
     const iconeExcluir = document.createElement("img")
