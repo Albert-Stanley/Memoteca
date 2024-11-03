@@ -10,20 +10,14 @@ const ui = {
 
   },
 
-  async excluirPensamento(pensamentoId){
-    const pensamento = await api.exluirPensamento(pensamentoId)
-    document.getElementById("pensamento-id").value = pensamento.id
-    document.getElementById("pensamento-autoria").value = pensamento.autoria
-    document.getElementById("pensamento-conteudo").value = pensamento.conteudo
-
-  },
-
   limparFormulario() {
     document.getElementById('pensamento-form').reset();
   },
 
   async renderizarPensamentos() {
     const listaPensamentos = document.getElementById('lista-pensamentos')
+    listaPensamentos.innerHTML = ""
+
     try {
       const pensamentos = await api.buscarPensamentos()
       pensamentos.forEach(ui.adicionarPensamentoNaLista);
@@ -62,7 +56,16 @@ const ui = {
 
     const botaoExcluir = document.createElement("button")
     botaoExcluir.classList.add("botao-excluir")
-    botaoExcluir.onclick = () => ui.excluirPensamento(pensamento.id)
+    botaoExcluir.onclick = async () => {
+      const confirmacao = confirm("Tem certeza que deseja excluir este pensamento?");
+      if(!confirmacao) return
+        try{
+          await api.exluirPensamento(pensamento.id);
+          ui.renderizarPensamentos()
+        }catch(error){
+          alert("Erro ao excluir pensamento")
+        }
+    }
 
     const iconeExcluir = document.createElement("img")
     iconeExcluir.src = "assets/imagens/icone-excluir.png"
