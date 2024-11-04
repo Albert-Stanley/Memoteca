@@ -13,8 +13,7 @@ const api = {
   },
   async salvarPensamento(pensamento) {
     try {
-      const response = await axios.post(`${URL_BASE}/pensamentos`, pensamento
-      )
+      const response = await axios.post(`${URL_BASE}/pensamentos`, pensamento)
       return await response.data
     }
     catch (error) {
